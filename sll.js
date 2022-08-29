@@ -11,7 +11,6 @@ class SinglyLinkedList {
     this.tail = null;
     this.length = 0;
   }
-
   push(val) {
     const newNode = new Node(val);
     if (!this.head) this.head = newNode;
@@ -21,7 +20,6 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
-
   pop() {
     if (!this.head) return undefined;
 
@@ -44,7 +42,6 @@ class SinglyLinkedList {
     this.length--;
     return cur.val;
   }
-
   shift() {
     if (!this.head) return undefined;
 
@@ -55,7 +52,6 @@ class SinglyLinkedList {
     this.length--;
     return cur.val;
   }
-
   unshift(val) {
     let newNode = new Node(val);
     if (!this.head) this.tail = newNode;
@@ -65,7 +61,6 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
-
   get(index) {
     if (index < 0 || index >= this.length) return null;
 
@@ -77,7 +72,6 @@ class SinglyLinkedList {
     }
     return cur;
   }
-
   set(index, value) {
     const node = this.get(index);
     if (!node) return false;
@@ -85,12 +79,11 @@ class SinglyLinkedList {
     node.val = value;
     return true;
   }
-
   insert(index, value) {
     if (index < 0 || index > this.length) return false;
 
     if (index === this.length) return !!this.push(value);
-    else if (index === 0) return !!this.unshift(value);
+    if (index === 0) return !!this.unshift(value);
 
     const newNode = new Node(value);
     const left = this.get(index - 1);
@@ -99,5 +92,17 @@ class SinglyLinkedList {
     newNode.next = right;
     this.length++;
     return true;
+  }
+  remove(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const left = this.get(index - 1);
+    const removed = left.next;
+    left.next = removed.next;
+    this.length--;
+    return removed.val;
   }
 }
