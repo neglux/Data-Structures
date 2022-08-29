@@ -44,4 +44,15 @@ class SinglyLinkedList {
     this.length--;
     return cur.val;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    if (this.length === 1) this.tail = null;
+
+    let cur = this.head;
+    this.head = cur.next;
+    this.length--;
+    return cur.val;
+  }
 }
