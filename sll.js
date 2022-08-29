@@ -105,4 +105,19 @@ class SinglyLinkedList {
     this.length--;
     return removed.val;
   }
+  reverse() {
+    let cur = this.head;
+    this.head = this.tail;
+    this.tail = cur;
+
+    let left = null;
+    let right = null;
+    for (let i = 0; i < this.length; i++) {
+      right = cur.next;
+      cur.next = left;
+      left = cur;
+      cur = right;
+    }
+    return this;
+  }
 }
