@@ -77,4 +77,12 @@ class SinglyLinkedList {
     }
     return cur;
   }
+
+  set(index, value) {
+    const node = this.get(index);
+    if (!node) return false;
+
+    node.val = value;
+    return true;
+  }
 }
