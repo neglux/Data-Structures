@@ -42,4 +42,23 @@ class DoublyLinkedList {
 
     return tempTail;
   }
+  shift() {
+    if (!this.head) return undefined;
+
+    const tempHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length--;
+
+      return tempHead;
+    }
+
+    this.head = this.head.next;
+    this.head.prev = null;
+    tempHead.next = null;
+    this.length--;
+
+    return tempHead;
+  }
 }
