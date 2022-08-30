@@ -28,7 +28,7 @@ class SinglyLinkedList {
       this.head = null;
       this.tail = null;
       this.length--;
-      return cur.val;
+      return cur;
     }
 
     let newTail = cur;
@@ -40,7 +40,7 @@ class SinglyLinkedList {
     this.tail = newTail;
     this.tail.next = null;
     this.length--;
-    return cur.val;
+    return cur;
   }
   shift() {
     if (!this.head) return undefined;
@@ -50,7 +50,7 @@ class SinglyLinkedList {
     let cur = this.head;
     this.head = cur.next;
     this.length--;
-    return cur.val;
+    return cur;
   }
   unshift(val) {
     let newNode = new Node(val);
@@ -103,7 +103,7 @@ class SinglyLinkedList {
     const removed = left.next;
     left.next = removed.next;
     this.length--;
-    return removed.val;
+    return removed;
   }
   reverse() {
     let cur = this.head;
