@@ -59,4 +59,24 @@ class Graph {
     }
     return result;
   }
+  bfs(startingVertex) {
+    const queue = [startingVertex];
+    const result = [];
+    const visited = {};
+
+    visited[startingVertex] = true;
+
+    let cur;
+    while (queue.length) {
+      cur = queue.shift();
+      result.push(cur);
+      this.adjacencyList[cur].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }
