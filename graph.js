@@ -23,4 +23,40 @@ class Graph {
     });
     delete this.adjacencyList[vertex];
   }
+  dfsRecursively(startingVertex) {
+    const results = [];
+    const visited = {};
+    const helper = (vertex) => {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      results.push(vertex);
+      this.adjacencyList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) return helper(neighbor);
+      });
+    };
+    helper(startingVertex);
+    return results;
+  }
+  dfsIteratively(startingVertex) {
+    const result = [];
+    const visited = {};
+
+    const stack = [];
+
+    stack.push(startingVertex);
+    visited[startingVertex] = true;
+
+    let cur;
+    while (stack.length) {
+      cur = stack.pop();
+      result.push(cur);
+      this.adjacencyList[cur].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }
